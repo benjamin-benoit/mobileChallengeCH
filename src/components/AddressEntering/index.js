@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, ActivityIndicator } from 'react-native';
+import { StyleSheet, ActivityIndicator, TouchableOpacity, View } from 'react-native';
 import { Layout, Text, Input, Button } from '@ui-kitten/components';
 import { FlatList } from "react-native-gesture-handler";
 import axios from 'axios';
@@ -33,6 +33,7 @@ const AddressEntering = ({navigation}) => {
             </Button>
             {isLoading ? <ActivityIndicator /> : (
                 <FlatList
+                style={{width: '100%'}}
                 data={data}
                 keyExtractor={(item, index) => {
                     // console.log("index", index)
@@ -41,10 +42,12 @@ const AddressEntering = ({navigation}) => {
                 renderItem={({ item }) => {
                     console.log("item", item)
                     return (
-                    <>
-                        <Text>{item.value}</Text>
-                        <Text>{item.to}</Text>
-                    </>
+                    <TouchableOpacity>
+                        <View style={styles.itemView}>
+                            <Text style={styles.valueItem}>{item.value} ETH</Text>
+                            <Text style={styles.toItem}>To: {item.to}</Text>
+                        </View>
+                    </TouchableOpacity>
                     )
                 }}
                 />
@@ -60,6 +63,18 @@ const styles = StyleSheet.create({
   button: {
     margin: 2,
   },
+  itemView: {
+    padding: 10,
+    borderBottomColor: 'black',
+    borderBottomWidth: 1,
+  },
+  valueItem: {
+    fontWeight: 'bold'
+  },
+  toItem: {
+    fontSize: 'bold',
+    fontSize: 11,
+  }
 });
 
 export default AddressEntering;
