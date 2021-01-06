@@ -1,4 +1,4 @@
-import { FETCH_TRANSACTIONS } from '../actionTypes'
+import { FETCH_TRANSACTIONS } from '../actionTypes';
 const defaultState = [];
 
 export const transactionList = (state = defaultState, action) => {

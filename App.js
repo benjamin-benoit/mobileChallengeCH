@@ -3,17 +3,19 @@ import {DarkTheme, NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import * as eva from '@eva-design/eva';
 import { ApplicationProvider } from '@ui-kitten/components';
-import store from './src/redux/store'
+import store from './src/redux/store';
 
 import AddressEntering from "./src/components/AddressEntering";
 import QRScanner from "./src/components/QRScanner";
 import TransactionList from "./src/components/TransactionList";
 import TransactionDetails from "./src/components/TransactionDetails";
+import { Provider } from 'react-redux';
 
 const Stack = createStackNavigator()
 
 export default () => (
-  <ApplicationProvider {...eva} theme={eva.dark} store={store}>
+  <ApplicationProvider {...eva} theme={eva.dark}>
+    <Provider store={store}>
       <NavigationContainer theme={MyTheme}>
         <Stack.Navigator>
           <Stack.Screen name="Coinhouse Ethersan" component={AddressEntering} />
@@ -22,6 +24,7 @@ export default () => (
           <Stack.Screen name="transactionDetails" component={TransactionDetails} options={{ title: 'Coinhouse Ethersan' }}/>
         </Stack.Navigator>
       </NavigationContainer>
+    </Provider>
   </ApplicationProvider>
 );
 
