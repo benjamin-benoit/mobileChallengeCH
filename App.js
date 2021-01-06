@@ -1,18 +1,28 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 import * as eva from '@eva-design/eva';
 import { ApplicationProvider, Layout, Text } from '@ui-kitten/components';
 
-const HomeScreen = () => (
-  <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-    <Text category='h1'>HOME</Text>
-  </Layout>
-);
+import AddressEntering from "./src/components/AddressEntering";
+import QRScanner from "./src/components/QRScanner";
+import TransactionList from "./src/components/TransactionList";
+import TransactionDetails from "./src/components/TransactionDetails";
+
+const Stack = createStackNavigator()
 
 export default () => (
   <ApplicationProvider {...eva} theme={eva.light}>
-    <HomeScreen />
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="addressEntering" component={AddressEntering} />
+        <Stack.Screen name="QRScanner" component={QRScanner} />
+        <Stack.Screen name="transactionList" component={TransactionList} />
+        <Stack.Screen name="transactionDetails" component={TransactionDetails} />
+      </Stack.Navigator>
+    </NavigationContainer>
   </ApplicationProvider>
 );
 
