@@ -6,18 +6,16 @@ import { fetchTransactions } from '../../api/Ethereum';
 import { useSelector, useDispatch } from 'react-redux';
 
 import {getTransactions} from '../../redux/selectors';
-import { fetchTransactionsAction } from "../../redux/actions";
 
 const AddressEntering = ({navigation}) => {
-    const dispatch = useDispatch();
-    const transactions = useSelector(state=>console.log(state));
+    // const dispatch = useDispatch();
+    // const transactions = useSelector(getTransactions);
 
-    useEffect(() =>{
-        dispatch(fetchTransactionsAction)
-    }, [])
     // useEffect(() => {
     //     fetchTransactions(dispatch)
     // }, [])
+
+    let transactions = fetchTransactions();
 
     return (
         <Layout style={{flex: 1, paddingTop: 20, alignItems: 'center'}}>
