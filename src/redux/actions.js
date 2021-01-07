@@ -1,7 +1,7 @@
-import { FETCH_TRANSACTIONS } from "./actionTypes";
+import { GET_TRANSACTIONS } from "./actionTypes";
 
 export const fetchTransactionsAction = (data) => ({
-    type: FETCH_TRANSACTIONS,
+    type: GET_TRANSACTIONS,
     payload: {
         data,
     },
