@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Layout, Text, Input, Button } from '@ui-kitten/components';
-import { FlatList, ScrollView } from "react-native-gesture-handler";
+import { FlatList, ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import { fetchTransactions } from '../../api/Ethereum';
 import { useSelector, useDispatch } from 'react-redux';
 import {getTransactions} from '../../redux/selectors';
@@ -15,8 +15,9 @@ const AddressEntering = ({navigation}) => {
     }, [])
 
     return (
-        <Layout style={{flex: 1, paddingTop: 20, alignItems: 'center'}}>
+        <Layout>
           <ScrollView>
+          <View style={styles.listHeader}>
               <Text>Please enter a valid ethereum address:</Text>
               <Input style={styles.input} placeholder='Enter your ethereum address' />
               <Button style={styles.button} onPress={() => {
@@ -24,8 +25,17 @@ const AddressEntering = ({navigation}) => {
               }}>
                   Lookup
               </Button>
-              {transactions && transactions.map((transaction, i) => {
-                  return <Text key={i}>{transaction.blockHash}</Text>;
+              <Text style={styles.topList}>100 MOST RECENT TRANSACTIONS</Text>
+          </View>
+              {transactions && transactions.slice(0,100).map((transaction, i) => {
+                  return <TouchableOpacity key={i} style={styles.itemElement}>
+                    <Text style={styles.itemValue}>
+                      {transaction.value} ETH
+                    </Text>
+                    <Text style={styles.itemTo}>
+                      to: {transaction.to}
+                    </Text>
+                  </TouchableOpacity>
               })}
           </ScrollView>
         </Layout>
@@ -33,22 +43,31 @@ const AddressEntering = ({navigation}) => {
 };
 
 const styles = StyleSheet.create({
-  flatlist: {
-    width: '100%',
-    marginTop: 30,
-    backgroundColor: '#222A45'
+  listHeader: {
+    paddingTop: 20,
+    alignItems: 'center'
   },
-  itemView: {
-    padding: 10,
+  topList: {
+    fontSize: 16,
+    margin: 15,
+    textAlign: "center"
+  },
+  input: {
+    margin: 10
+  },
+  itemElement: {
+    padding: 15,
     borderBottomColor: 'black',
-    borderBottomWidth: 1,
+    borderBottomWidth: 1
   },
-  valueItem: {
+  itemValue: {
     fontWeight: 'bold'
   },
-  toItem: {
-    fontSize: 'bold',
-    fontSize: 11,
+  itemTo: {
+    fontSize: 11
+  },
+  button: {
+    width: '50%'
   }
 });
 
