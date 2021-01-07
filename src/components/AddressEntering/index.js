@@ -1,17 +1,9 @@
-<<<<<<< HEAD
 import React, { useEffect } from "react";
 import { StyleSheet } from 'react-native';
 import { Layout, Text, Input, Button } from '@ui-kitten/components';
 import { FlatList, ScrollView } from "react-native-gesture-handler";
 import { fetchTransactions } from '../../api/Ethereum';
 import { useSelector, useDispatch } from 'react-redux';
-=======
-import React, { useEffect, useState } from "react";
-import { StyleSheet, ActivityIndicator, TouchableOpacity, View } from 'react-native';
-import { Layout, Text } from '@ui-kitten/components';
-import { FlatList } from "react-native-gesture-handler";
-import axios from 'axios';
->>>>>>> main
 
 
 import AddressForm from "../AddressForm";
