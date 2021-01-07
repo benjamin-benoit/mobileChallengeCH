@@ -1,11 +1,20 @@
+<<<<<<< HEAD
 import React, { useEffect } from "react";
 import { StyleSheet } from 'react-native';
 import { Layout, Text, Input, Button } from '@ui-kitten/components';
 import { FlatList, ScrollView } from "react-native-gesture-handler";
 import { fetchTransactions } from '../../api/Ethereum';
 import { useSelector, useDispatch } from 'react-redux';
+=======
+import React, { useEffect, useState } from "react";
+import { StyleSheet, ActivityIndicator, TouchableOpacity, View } from 'react-native';
+import { Layout, Text } from '@ui-kitten/components';
+import { FlatList } from "react-native-gesture-handler";
+import axios from 'axios';
+>>>>>>> main
 
-import {getTransactions} from '../../redux/selectors';
+
+import AddressForm from "../AddressForm";
 
 const AddressEntering = ({navigation}) => {
     const dispatch = useDispatch();
@@ -34,12 +43,23 @@ const AddressEntering = ({navigation}) => {
 };
 
 const styles = StyleSheet.create({
-  input: {
-    margin: 20,
+  flatlist: {
+    width: '100%',
+    marginTop: 30,
+    backgroundColor: '#222A45'
   },
-  button: {
-    margin: 2,
+  itemView: {
+    padding: 10,
+    borderBottomColor: 'black',
+    borderBottomWidth: 1,
   },
+  valueItem: {
+    fontWeight: 'bold'
+  },
+  toItem: {
+    fontSize: 'bold',
+    fontSize: 11,
+  }
 });
 
 export default AddressEntering;
