@@ -4,9 +4,7 @@ import { Layout, Text, Input, Button } from '@ui-kitten/components';
 import { FlatList, ScrollView } from "react-native-gesture-handler";
 import { fetchTransactions } from '../../api/Ethereum';
 import { useSelector, useDispatch } from 'react-redux';
-
-
-import AddressForm from "../AddressForm";
+import {getTransactions} from '../../redux/selectors';
 
 const AddressEntering = ({navigation}) => {
     const dispatch = useDispatch();
